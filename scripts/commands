@@ -1,0 +1,4 @@
+near call CONTRACT addRevision '{"uri": "uri1", "newUri": "uri1.updated1"}' --accountId CONTRACT
+near call CONTRACT getAgreement '{"uri": "uri1"}' --accountId CONTRACT
+near call CONTRACT signAgreement '{"uri": "uri1"}' --accountId piorot.testnet
+near call $CONTRACT addAgreement '{"uri": "uri1", "signer": "piorot.testnet"}' --accountId $CONTRACT

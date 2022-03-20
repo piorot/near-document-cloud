@@ -21,7 +21,7 @@ echo "(run this script again to see changes made by this file)"
 echo ---------------------------------------------------------
 echo
 
-near view $CONTRACT helloWorld
+near view $CONTRACT 
 
 echo
 echo
