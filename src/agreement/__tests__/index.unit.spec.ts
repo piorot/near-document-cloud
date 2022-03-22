@@ -51,9 +51,29 @@ describe("Agreement", () => {
     });
 
     it("agreement should be signed ", () => {
-        VMContext.setSigner_account_id("piorot.testnet");
-        contract.signAgreement();
-        expect(contract.isSigned).toBeTruthy();
-      });
+      VMContext.setSigner_account_id("piorot.testnet");
+      contract.signAgreement();
+      expect(contract.isSigned).toBeTruthy();
+    });
+  });
+
+  describe("Adding Agreement Docs", () => {
+    it("only issuer can add new version of docs", () => {
+      VMContext.setSigner_account_id("hacker");
+      expect(() => {
+        contract.addAgreementVersion("ipfs://doc2");
+      }).toThrow();
+    });
+
+    it("addnind new version resets isSigned flag", () => {
+      contract.addAgreementVersion("ipfs://doc2");
+      expect(contract.isSigned).toBeFalsy();
+    });
+
+    it("addnind new version push new doc link to versions vector", () => {
+      contract.addAgreementVersion("ipfs://doc2");
+      expect(contract.versions.length).toBe(2);
+      expect(contract.versions.last).toBe("ipfs://doc2");
+    });
   });
 });

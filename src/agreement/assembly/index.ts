@@ -14,7 +14,7 @@ export function signAgreementByUri(uri: string): void {
   logging.log(storage.get<Agreement>(uri));
   assert(storage.get<Agreement>(uri), "Agreement doesn't exist");
   let agreenemtnToSign = storage.getSome<Agreement>(uri)
-  agreenemtnToSign.signAgreementa();
+  agreenemtnToSign.signAgreement();
   storage.set<Agreement>(uri, agreenemtnToSign);
   logging.log(storage.get<Agreement>(uri));
 
