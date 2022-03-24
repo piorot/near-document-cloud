@@ -15,31 +15,43 @@ echo
 echo
 echo
 echo ---------------------------------------------------------
-echo "Step 1: Call 'view' functions on the contract"
+echo "Step 1: Call 'addAgreement' function on the contract"
 echo
-echo "(run this script again to see changes made by this file)"
 echo ---------------------------------------------------------
 echo
+read -p "Press enter to continue"
 
-near view $CONTRACT 
-
-echo
-echo
-
-near view $CONTRACT read '{"key":"some-key"}'
+near call $CONTRACT addAgreement '{"uri": "uri1", "signer": "piorot.testnet"}' --accountId $CONTRACT
 
 echo
 echo
 echo ---------------------------------------------------------
-echo "Step 2: Call 'change' functions on the contract"
+echo "Step 2: Call 'signAgreement' function on the contract"
+echo
 echo ---------------------------------------------------------
 echo
+read -p "Press enter to continue"
 
-# the following line fails with an error because we can't write to storage without signing the message
-# --> FunctionCallError(HostError(ProhibitedInView { method_name: "storage_write" }))
-# near view $CONTRACT write '{"key": "some-key", "value":"some value"}'
-near call $CONTRACT write '{"key": "some-key", "value":"some value"}' --accountId $CONTRACT
+near call $CONTRACT signAgreementByUri '{"uri": "uri1"}' --accountId piorot.testnet
 
 echo
-echo "now run this script again to see changes made by this file"
-exit 0
+echo
+echo ---------------------------------------------------------
+echo "Step 3: Call 'addRevision' function on the contract"
+echo
+echo ---------------------------------------------------------
+echo
+read -p "Press enter to continue"
+
+near call $CONTRACT addRevision '{"uri": "uri1", "newUri": "uri1.updated1"}' --accountId $CONTRACT
+
+echo
+echo
+echo ---------------------------------------------------------
+echo "Step 4: Call 'signAgreement' function on the contract"
+echo
+echo ---------------------------------------------------------
+echo
+read -p "Press enter to continue"
+
+near call $CONTRACT signAgreementByUri '{"uri": "uri1"}' --accountId piorot.testnet

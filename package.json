@@ -5,11 +5,14 @@
   "scripts": {
     "dev": "watch -d -n 1 'clear && yarn test'",
     "test": "yarn asp -f unit.spec",
-    "clean": "rm -rf ./build && rm -rf ./neardev",
+    "clean": "./scripts/3.cleanup.sh && rm -rf ./build && rm -rf ./neardev",
     "build": "asb --target debug",
     "build:release": "asb",
     "asp": "asp --verbose --nologo",
-    "storage": "./bin/storage-report"
+    "storage": "./bin/storage-report", 
+    "storage:watch": " watch -d -n 1 yarn storage $CONTRACT",
+    "demo" : "./scripts/2.use-contract.sh",
+    "deploy" : "./scripts/1.dev-deploy.sh"
   },
   "keywords": [],
   "author": "hello@near.org",

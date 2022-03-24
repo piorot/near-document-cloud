@@ -75,10 +75,11 @@ INSTALL `NEAR CLI` first like this: `npm i -g near-cli`
 
 1. clone this repo to a local folder
 2. run `yarn`
-3. run `./scripts/1.dev-deploy.sh`
-3. run `./scripts/2.use-contract.sh`
-4. run `./scripts/2.use-contract.sh` (yes, run it to see changes)
-5. run `./scripts/3.cleanup.sh`
+3. run `yarn build`
+4. run `./scripts/1.dev-deploy.sh`
+5. run `./scripts/2.use-contract.sh`
+6. run `./scripts/2.use-contract.sh` (yes, run it to see changes)
+7. run `./scripts/3.cleanup.sh`
 
 ### Videos
 
